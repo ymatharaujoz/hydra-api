@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hydra-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hydra-api
+  template:
+    metadata:
+      labels:
+        app: hydra-api
+    spec:
+      containers:
+      - name: hydra-api
+        image: ymatharaujo/hydra-api:v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hydra-api-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: hydra-api
+  ports:
+    - port: 80
+      targetPort: 8080
