@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hydra-api
+  namespace: default
 spec:
   replicas: 3
   selector:
@@ -23,6 +24,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: hydra-api-service
+  namespace: default
 spec:
   type: LoadBalancer
   selector:
@@ -30,3 +32,4 @@ spec:
   ports:
     - port: 80
       targetPort: 8080
+      
