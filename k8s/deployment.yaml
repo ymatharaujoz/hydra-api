@@ -4,7 +4,6 @@ metadata:
   name: hydra-api
   namespace: default
 spec:
-  replicas: 3
   strategy:
     type: RollingUpdate
     rollingUpdate:
